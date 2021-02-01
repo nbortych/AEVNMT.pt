@@ -1,5 +1,6 @@
 from .constants import UNK_TOKEN, PAD_TOKEN, SOS_TOKEN, EOS_TOKEN
 
+
 class Vocabulary:
 
     def __init__(self):
@@ -96,7 +97,7 @@ class Vocabulary:
         for word, freq in sorted(vocab.word_freqs.items(), key=lambda kv: kv[1], reverse=True):
 
             if freq >= min_freq and not (max_size > 0 and \
-                    len(vocab.word_to_idx) == max_size+4) and word not in vocab.word_to_idx:
+                                         len(vocab.word_to_idx) == max_size + 4) and word not in vocab.word_to_idx:
                 idx = len(vocab.word_to_idx)
                 vocab.word_to_idx[word] = idx
                 vocab.idx_to_word[idx] = word
@@ -115,9 +116,9 @@ class Vocabulary:
                          from the vocabulary file.
         """
         vocab = Vocabulary()
-        with open(vocab_file) as f:
+        with open(vocab_file, encoding='ISO-8859-2') as f:
             for line in f:
-                if max_size > 0 and len(vocab.word_to_idx) == max_size+4:
+                if max_size > 0 and len(vocab.word_to_idx) == max_size + 4:
                     break
 
                 word = line.rstrip()
